@@ -1,7 +1,31 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import NotFound from "./pages/NotFound";
+import GlobalStyle from "./styles/GlobalStyle.styles";
 
 function App() {
-  return <div className="App"> Hello World</div>;
+  return (
+    <div className="App">
+      <GlobalStyle />
+      <BrowserRouter>
+        <Navbar title="app-title" />
+        <Routes>
+          <Route path="/" index element={<Home name="Title" />} />
+          <Route path="/contactUs" element={<ContactUs />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;

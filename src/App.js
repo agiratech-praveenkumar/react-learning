@@ -8,21 +8,26 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import GlobalStyle from "./styles/GlobalStyle.styles";
+import UserContext from "./context/UserContext"
+import { useState } from "react";
 
 function App() {
+  const [user, setUser] = useState('');
   return (
     <div className="App">
       <GlobalStyle />
       <BrowserRouter>
-        <Navbar title="app-title" />
-        <Routes>
-          <Route path="/" index element={<Home name="Title" />} />
-          <Route path="/contactUs" element={<ContactUs />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Signup" element={<Signup />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <UserContext.Provider value={{user, setUser}}>
+          <Navbar title="app-title" />
+          <Routes>
+            <Route path="/" index element={<Home name="Title" />} />
+            <Route path="/contactUs" element={<ContactUs />} />
+            <Route path="/AboutUs" element={<AboutUs />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Signup" element={<Signup />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

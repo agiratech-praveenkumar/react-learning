@@ -1,9 +1,9 @@
 import axios from "../api/axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Alerts from "../components/Alerts";
-
-const REGISTER_URL = "/api/users";
+import { Button, Container, TextField } from "@mui/material";
+import UserContext from "../context/UserContext";
 
 const Signup = () => {
   // let navigate = useNavigate();
@@ -27,7 +27,7 @@ const Signup = () => {
     };
 
     try {
-      const response = await axios.post(REGISTER_URL, data);
+      const response = await axios.post("/api/users", data);
       if (response.status == 200) {
         setAlert(JSON.stringify(response.data.message));
         setFullname("");
@@ -45,45 +45,59 @@ const Signup = () => {
 
   return (
     <>
-      <div className="container">
+      <Container maxWidth="sm">
         <Alerts text={alert} />
         <form onSubmit={handleSubmit}>
-          <label>Full Name</label>
-          <input
-            type="text"
+          <TextField
+            id="outlined-basic"
+            label="Full Name"
+            variant="outlined"
             value={fullname}
             onChange={(e) => setFullname(e.target.value)}
+            size="small"
+            margin="dense"
           />
           <br />
-          <label>Mobile Number </label>
-          <input
-            type="text"
+          <TextField
+            id="outlined-basic"
+            label="Mobile Number"
+            variant="outlined"
             value={mobilenumber}
             onChange={(e) => setMobilenumber(e.target.value)}
-            // required
+            size="small"
+            margin="dense"
           />
           <br />
-          <label>Email </label>
-          <input
-            type="email"
+          <TextField
+            id="outlined-basic"
+            label="Email"
+            variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // required
+            size="small"
+            margin="dense"
           />
           <br />
-          <label>Password </label>
-          <input
+          <TextField
+            id="outlined-basic"
+            label="Password"
+            variant="outlined"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // required
+            size="small"
+            margin="dense"
           />
           <br />
-          <input type="submit" value="Register" />
+          <Button variant="outlined" type="submit">
+            Register
+          </Button>
         </form>
 
-        {/* {`${fullname} / ${mobilenumber} / ${email} / ${password}`} */}
-      </div>
+        <p>
+          Having an Account? <Link to="/login">Login</Link> here.
+        </p>
+      </Container>
     </>
   );
 };

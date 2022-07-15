@@ -44,6 +44,7 @@ const Navbar = (props) => {
         <LinkCtr>
           <Link to="/contactUs">Contact Us</Link>
           <Link to="/AboutUs">About Us</Link>
+          <Link to="/Products">Products</Link>
           <Link to="/Login">
             <PersonCircle color="white" size={20} />
           </Link>

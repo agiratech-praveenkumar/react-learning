@@ -37,6 +37,9 @@ const Signup = () => {
         // navigate("/login");
       }
     } catch (err) {
+      if (err.toJSON().message === "Network Error") {
+        setAlert("Cannot reach servers");
+      }
       if (err.response.status == 400) {
         setAlert(JSON.stringify(err.response.data.message));
       }

@@ -26,12 +26,24 @@ const Login = () => {
       const res = await axios.post("api/login", data);
 
       if (res.status == 200) {
+        const userData = {
+          data: {
+            mobilenumber: mobilenumber,
+            token: res.data.data.authentication_token,
+          },
+        };
+        // console.log(res.data.data.authentication_token)
         setAlert(JSON.stringify(res.data.message));
         setMobilenumber("");
         setPassword("");
-        setUser(JSON.stringify(res.data.data));
+        setUser(JSON.stringify(userData));
+        localStorage.setItem("user", JSON.stringify(userData));
       }
     } catch (err) {
+      if (err.toJSON().message === "Network Error") {
+        setAlert("Cannot reach servers");
+      }
+
       if (err.response.status == 401) {
         setAlert(JSON.stringify(err.response.data.message));
       }

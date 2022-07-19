@@ -1,22 +1,25 @@
-import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import styled from "styled-components";
-
+import img1 from "../assets/img/1.jpg";
+import img2 from "../assets/img/2.jpg";
 
 const StyledCarousel = styled(Carousel)`
-  width: 50vw;
-  height: 500px;
-`
+  width: 100vw;
+`;
+
+const Img = styled.img`
+  height: 50vh;
+`;
 
 const CarouselImg = () => {
   return (
     <>
       <StyledCarousel showArrows={true} showThumbs={false} showStatus={false}>
         <div>
-          <img alt="" src="https://picsum.photos/200" />
+          <Img alt="no imgage" src={img1} />
         </div>
         <div>
-          <img alt="" src="https://picsum.photos/200" />
+          <Img alt="no image" src={img2} />
         </div>
       </StyledCarousel>
     </>
